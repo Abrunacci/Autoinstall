@@ -13,7 +13,7 @@ echo '>> Adding '$USERNAME' to sudoers'
  adduser $USERNAME sudo
 
 # Prerequisites
- apt-get install -y curl python-pip git
+ apt-get install -y curl python-pip git vim-nox
  pip install configparser
 
 # Executing program

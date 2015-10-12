@@ -106,10 +106,11 @@ def start_applications_installation(configFile):
         response = install(section)
         if response == 'success':
             print response
-            if configFile.getboolean(section,'configurate'):
-                filepaths = configFile.get(section,'path').split(',')
-                for filepath in filepaths:
-                    print configurate(section, filepath)
+            if configFile.has_option(section,'configurate'):
+                if configFile.getboolean(section,'configurate'):
+                    filepaths = configFile.get(section,'path').split(',')
+                    for filepath in filepaths:
+                        print configurate(section, filepath)
             if configFile.has_option(section,'related_packages'):
                 applications = configFile.get(section,'related_packages').split(',')
                 for application in applications:
