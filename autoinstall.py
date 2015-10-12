@@ -86,13 +86,13 @@ def start_customization(configFile):
                 line1 = 'sed -i "1i export WORKON_HOME=$HOME/.virtualenvs"'
                 line2 = 'sed -i "2i export MSYS_HOME=/c/msys/1.0"'
                 zshrc = '/home/'+os.getlogin()+'/.zshrc'
-                vimrc = '/home/'+os.getlogin()+'/.vimrc'
+                bashrc = '/home/'+os.getlogin()+'/.bashrc'
                 if os.path.exists(zshrc):
                     os.system(line1+' '+zshrc)
                     os.system(line2+' '+zshrc)
-                if os.path.exists(vimrc):
-                    os.system(line1+' '+vimrc)
-                    os.system(line2+' '+vimrc)
+                if os.path.exists(bashrc):
+                    os.system(line1+' '+bashrc)
+                    os.system(line2+' '+bashrc)
             except Exception,e:
                 print 'An error has occurred {0}'.format(e)
 
