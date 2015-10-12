@@ -19,55 +19,38 @@ Once "autoinstall.py" is running, the "APPLICATIONS.INI" file is read and starts
 
 To add an application in the 'APPLICATIONS.INI' file should do as follows:
 
-[application's name]
-
+[application's name]<br>
 install: True
 
 If the applications have prerequisites you only have to add in section the 'prerequisites' option
 
-[application's name]
-
-install: True
-
-prerequisites: prerequisite1, prerequisite2, prerequisite3
+[application's name]<br>
+install: True<br>
+prerequisites: prerequisite1, prerequisite2, prerequisite3<br>
 
 
 If you want to install related packages (ex: postgresql -> postgresql-contrib):
 
-[application's name]
-
-install: True
-
-prerequisites: prerequisite1, prerequisite2, prerequisite3
-
-related_packages: other_application, other_application2
-
+[application's name]<br>
+install: True<br>
+prerequisites: prerequisite1, prerequisite2, prerequisite3<br>
+related_packages: other_application, other_application2<br>
 
 If the application requires edit a config file just add the option path:
 
-[application's name]
-
-install: True
-
-prerequisites: prerequisite1, prerequisite2, prerequisite3
-
-related_packages: other_application, other_application2
-
-path: path1, path2,
-
+[application's name]<br>
+install: True<br>
+prerequisites: prerequisite1, prerequisite2, prerequisite3<br>
+related_packages: other_application, other_application2<br>
+path: "path1", "path2"<br>
 
 If the application requires other commands after installation (ex: add user to group)
 
-[application's name]
-
-install: True
-
-prerequisites: prerequisite1, prerequisite2, prerequisite3
-
-related_packages: other_application, other_application2
-
-path: path1, path2,
-
+[application's name]<br>
+install: True<br>
+prerequisites: prerequisite1, prerequisite2, prerequisite3<br>
+related_packages: other_application, other_application2<br>
+path: "path1", "path2"<br>
 other_commands: command1, command2, command3
 
 
