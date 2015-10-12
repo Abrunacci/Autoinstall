@@ -53,6 +53,8 @@ related_packages: other_application, other_application2<br>
 path: "path1", "path2"<br>
 other_commands: command1, command2, command3
 
+#### IMPORTANT: The 'install' option is **NOT OPTIONAL**
+
 
 
 
