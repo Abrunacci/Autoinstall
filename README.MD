@@ -8,12 +8,10 @@ This script was created to facilitate the post-installation "Debian Jessie".
 
 When "./Autoinstall.sh" is executed, the scritp begins to perform actions as follows:
 
-> Update and upgrade the system
-> Add sudoers to sudo group
-
-> Install prerequisites (git, python-pip and configParser)
-
-> Run autoinstall.py
+Update and upgrade the system.
+Add sudoers to sudo group.
+Install prerequisites (git, python-pip and configParser).
+Run autoinstall.py.
 
 Once "autoinstall.py" is running, the "APPLICATIONS.INI" file is read and starts with the installation of all applications that are there.
 
