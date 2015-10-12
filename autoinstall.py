@@ -28,6 +28,9 @@ def start_customization(configFile):
                 os.system(cmd)
                 print '>> Getting "syntax-highligthing" plugin...'
                 cmd = 'git clone git://github.com/zsh-users/zsh-syntax-highlighting.git'
+                print '*************************'
+                print ' Type "exit" to continue '
+                print '*************************'
                 os.system(cmd)
                 cmd = 'mv zsh-syntax-highlighting /home/$USERNAME/.oh-my-zsh/plugins/'
                 os.system(cmd)
@@ -87,13 +90,14 @@ def start_customization(configFile):
                 if os.path.exists(zshrc):
                     os.system(line1+' '+zshrc)
                     os.system(line2+' '+zshrc)
-                os.system(line1+' '+vimrc)
-                os.system(line2+' '+vimrc)
+                if os.path.exists(vimrc):
+                    os.system(line1+' '+vimrc)
+                    os.system(line2+' '+vimrc)
             except Exception,e:
                 print 'An error has occurred {0}'.format(e)
 
 
-def start_applications_instalation(configFile):
+def start_applications_installation(configFile):
     response = ''
     for section in configFile.sections():
         if configFile.has_option(section, 'prerequisites'):
