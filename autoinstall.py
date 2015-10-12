@@ -20,7 +20,7 @@ def start_customization(configFile):
         if configFile.getboolean('oh-my-zsh','install'):
             try:
                 print '>> Installing zsh...'
-                os.system('apt-get install zsh')
+                os.system('apt-get install -y zsh')
                 os.system('chsh -s $(which zsh)')
                 print '>> Getting oh-my-zsh!...'
                 cmd = 'sudo -u $USERNAME sh -c \
