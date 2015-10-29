@@ -1,0 +1,15 @@
+# 
+
+# deb cdrom:[Debian GNU/Linux 8.2.0 _Jessie_ - Official amd64 NETINST Binary-1 20150906-11:09]/ jessie contrib main non-free
+
+#deb cdrom:[Debian GNU/Linux 8.2.0 _Jessie_ - Official amd64 NETINST Binary-1 20150906-11:09]/ jessie contrib main non-free
+
+deb http://ftp.ccc.uba.ar/pub/linux/debian/debian/ jessie main non-free contrib
+deb-src http://ftp.ccc.uba.ar/pub/linux/debian/debian/ jessie main non-free contrib
+
+deb http://security.debian.org/ jessie/updates main contrib non-free
+deb-src http://security.debian.org/ jessie/updates main contrib non-free
+
+# jessie-updates, previously known as 'volatile'
+deb http://ftp.ccc.uba.ar/pub/linux/debian/debian/ jessie-updates main contrib non-free
+deb-src http://ftp.ccc.uba.ar/pub/linux/debian/debian/ jessie-updates main contrib non-free

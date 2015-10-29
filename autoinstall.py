@@ -21,25 +21,20 @@ def start_customization(configFile):
             try:
                 print '>> Installing zsh...'
                 os.system('apt-get install -y zsh')
-                os.system('chsh -s $(which zsh)')
                 print '>> Getting oh-my-zsh!...'
-                cmd = 'sudo -u $USERNAME sh -c \
-                        "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"'
+                cmd = 'sudo -u $USERNAME sh ./tools/zshFiles/zsh.sh'
                 os.system(cmd)
                 print '>> Getting "syntax-highligthing" plugin...'
                 cmd = 'git clone git://github.com/zsh-users/zsh-syntax-highlighting.git'
-                print '*************************'
-                print ' Type "exit" to continue '
-                print '*************************'
                 os.system(cmd)
+                print '>> Moving to folder'
                 cmd = 'mv zsh-syntax-highlighting /home/$USERNAME/.oh-my-zsh/plugins/'
                 os.system(cmd)
-                cmd = 'sed -i "1i source \
-                        /home/"$USERNAME"/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"\
-                        /home/$USERNAME/.zshrc'
+                configFile.set('oh-my-zsh','install','False')
+                print 'Changing bash for zsh as default shell'
+                cmd = 'sudo $USERNAME chsh -s $(which zsh)'
                 os.system(cmd)
-                print '>> Editting configuration file'
-                cmd = 'vim /home/$USERNAME/.zshrc'
+                cmd = 'cp tools/zshFiles/.zshrc /home/$USERNAME/'
                 os.system(cmd)
                 print '>> success'
             except Exception,e:
@@ -48,7 +43,7 @@ def start_customization(configFile):
         if configFile.getboolean('vim-as-a-python-ide','install'):
             try:
                 print '>> Creating configuration folders...'
-                cmd = 'sudo -u $USERNAME mkdir /home/$USERNAME/.vim \
+                cmd = 'mkdir /home/$USERNAME/.vim \
                         /home/$USERNAME/.vim/colors \
                         /home/$USERNAME/.vim/autoload \
                         /home/$USERNAME/.vim/bundle'
@@ -63,16 +58,17 @@ def start_customization(configFile):
                 cmd = 'wget -O /home/$USERNAME/.vim/colors/wombat256mod.vim \
                         "http://www.vim.org/scripts/download_script.php?src_id=13400"'
                 os.system(cmd)
-                #cmd = 'mv wombat256mod.vim /home/$USERNAME/.vim/colors/'
-                #os.system(cmd)
+                print '>> Curl -so /home...'
                 cmd = 'curl -so /home/$USERNAME/.vim/autoload/pathogen.vim \
                         "https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim"'
                 os.system(cmd)
-                print '>> Changing folder permissions...'
-                cmd = 'chown -R $USERNAME /home/$USERNAME/.vim'
+                print '>> Setting False to configFile'
+                configFile.set('vim-as-a-python-ide','install','False')
+                print 'Adding .vimrc file'
+                cmd = 'mv ./tools/vim-as-a-python-ide/.vimrc /home/$USERNAME/'
                 os.system(cmd)
-                print '>> Editing configuration file'
-                cmd = 'vim /home/$USERNAME/.vimrc'
+                print '>> Changing folders permision'
+                cmd = 'chown -R $USERNAME:$USERNAME /home/$USERNAME/.vim'
                 os.system(cmd)
                 print 'success'
             except Exception,e:
@@ -100,27 +96,23 @@ def start_customization(configFile):
 def start_applications_installation(configFile):
     response = ''
     for section in configFile.sections():
-        if configFile.has_option(section, 'prerequisites'):
-            for prerequisite in configFile.get(section,'prerequisites'):
-                print install(prerequisite)
-        response = install(section)
-        if response == 'success':
-            print response
-            if configFile.has_option(section,'configurate'):
-                if configFile.getboolean(section,'configurate'):
-                    filepaths = configFile.get(section,'path').split(',')
-                    for filepath in filepaths:
-                        print configurate(section, filepath)
-            if configFile.has_option(section,'related_packages'):
-                applications = configFile.get(section,'related_packages').split(',')
-                for application in applications:
-                    print install(application) 
-            if configFile.has_option(section,'others_commands'):
-                commands = configFile.get(section,'others_commands').split(',')
-                for command in commands:
-                    os.system(command)
-        else:
-            print response
+        if configFile.get(section,'install') == 'True':
+            if configFile.has_option(section, 'prerequisites'):
+                for prerequisite in configFile.get(section,'prerequisites'):
+                    print install(prerequisite)
+            response = install(section)
+            if response == 'success':
+                print response
+                if configFile.has_option(section,'related_packages'):
+                    applications = configFile.get(section,'related_packages').split(',')
+                    for application in applications:
+                        print install(application) 
+                if configFile.has_option(section,'others_commands'):
+                    commands = configFile.get(section,'others_commands').split(',')
+                    for command in commands:
+                        os.system(command)
+            else:
+                print response
 
 
 def install(application):
@@ -145,4 +137,3 @@ def configurate(application, filepath):
 
 if __name__ == '__main__':
     run()
-    print 'Instalation ended.'
