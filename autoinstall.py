@@ -70,10 +70,14 @@ def start_customization(configFile):
                 print '>> Changing folders permision'
                 cmd = 'chown -R $USERNAME:$USERNAME /home/$USERNAME/.vim'
                 os.system(cmd)
+<<<<<<< HEAD
                 print '>> Installing vim-jedi'
                 cmd = 'sudo $USERNAME pip install jedi'
                 os.system(cmd)
                 print 'success'
+=======
+                print '>> Success'
+>>>>>>> 8163eec441f2652197bf294104ab01ec411417f2
             except Exception,e:
                 print 'An error has occurred {0}'.format(e)
     if configFile.has_section('virtualenvwrapper'):
