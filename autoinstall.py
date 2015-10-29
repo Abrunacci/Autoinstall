@@ -70,6 +70,9 @@ def start_customization(configFile):
                 print '>> Changing folders permision'
                 cmd = 'chown -R $USERNAME:$USERNAME /home/$USERNAME/.vim'
                 os.system(cmd)
+                print '>> Installing vim-jedi'
+                cmd = 'sudo $USERNAME pip install jedi'
+                os.system(cmd)
                 print 'success'
             except Exception,e:
                 print 'An error has occurred {0}'.format(e)
