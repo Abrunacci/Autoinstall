@@ -1,43 +1,47 @@
 import logging
 import logging.handlers
 import os
+import sys
+import time
 
-
-""" OLD STUFF
-
-
-LOGDIR = os.path.join(BASEDIR, 'log', 'autoinstall.log')
-
-logging.basicConfig(filename=LOGDIR,
-                    level=logging.DEBUG,
-                    format='[%(asctime)s] %(levelname)10s: %(message)s')
-
-LOGGER = logging
-"""
 
 BASEDIR = os.path.abspath(os.path.dirname(__file__))
 LOGDIR = os.path.join(BASEDIR, 'log', 'autoinstall.log')
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
+log_format = "".join(["[%(asctime)s] [%(levelname)8s] Message: ",
+                      "%(message)s"])
+
+formatter = logging.Formatter(fmt=log_format)
+# Format UTC Time
+formatter.converter = time.gmtime
+
+# File Handler Logger
+LOGDIR = os.path.join(BASEDIR, 'log')
+if not os.path.isdir(LOGDIR):
+    os.mkdir(LOGDIR)
+
+LOGFILE = os.path.join(
+    LOGDIR,
+    'autoinstall_log.log',
+    )
+fh = logging.handlers.RotatingFileHandler(filename=LOGFILE,
+                                          maxBytes=10e6,
+                                          backupCount=10)
+fh.setLevel(logging.DEBUG)
+fh.setFormatter(formatter)
+logger.addHandler(fh)
+
 # create logger
-logger = logging.getLogger("autoinstall_log")
-# create formatter
-formatter = logging.Formatter("[%(asctime)s] [%(levelname)10s] Message: %(message)s")
-
-
-# Add the log message handler to the logger
-handler = logging.handlers.RotatingFileHandler(
-              LOGDIR, maxBytes=20, backupCount=5)
-handler.setFormatter(formatter)
-handler.setLevel(logging.DEBUG)
-logger.addHandler(handler)
-
 # create console handler and set level to debug
 ch = logging.StreamHandler()
-#LEVELS: DEBUG - INFO - WARNING - ERROR - CRITICAL
-ch.setLevel(logging.DEBUG)
-
 # add formatter to ch
 ch.setFormatter(formatter)
+ch.setLevel(logging.INFO)
 # add ch to logger
 logger.addHandler(ch)
+
 
 LOGGER = logger
