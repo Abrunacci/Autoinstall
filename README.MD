@@ -65,7 +65,7 @@ git checkout develop
 
 ## Meta
 
-Alejandro Brunacci – [@Abrunacci](https://twitter.com/Abrunacci) – Abrunacci@Bitson.com.ar
+Alejandro Brunacci – [@Abrunacci87](https://twitter.com/Abrunacci87) – Abrunacci@Bitson.com.ar
 
 Distributed under the GPL3 license. See ``LICENSE`` for more information.
 
