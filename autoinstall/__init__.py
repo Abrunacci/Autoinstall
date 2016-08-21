@@ -48,8 +48,8 @@ class Main:
         for application in APPLICATIONS:
             LOGGER.info('Installing %s...'%(application))
             ac = ADDITIONAL_COMMANDS.get(application) or []
-            # app = Application(name=application,
-            #                   additional_commands=ac)
-            # app.install()
-            # if ac:
-            #     app.execute_additional_commands()
+            app = Application(name=application,
+                              additional_commands=ac)
+            app.install()
+            if ac:
+                app.execute_additional_commands()
