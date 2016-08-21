@@ -19,7 +19,6 @@ BASEDIR = os.path.abspath(os.path.dirname(__file__))
 LOGDIR = os.path.join(BASEDIR, 'log', 'autoinstall.log')
 # create logger
 logger = logging.getLogger("autoinstall_log")
-logger.setLevel(logging.INFO)
 # create formatter
 formatter = logging.Formatter("[%(asctime)s] [%(levelname)10s] Message: %(message)s")
 
@@ -28,6 +27,7 @@ formatter = logging.Formatter("[%(asctime)s] [%(levelname)10s] Message: %(messag
 handler = logging.handlers.RotatingFileHandler(
               LOGDIR, maxBytes=20, backupCount=5)
 handler.setFormatter(formatter)
+handler.setLevel(logging.DEBUG)
 logger.addHandler(handler)
 
 # create console handler and set level to debug
