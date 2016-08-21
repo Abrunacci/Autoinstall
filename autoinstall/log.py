@@ -14,13 +14,16 @@ logging.basicConfig(filename=LOGDIR,
 LOGGER = logging
 """
 
+LOGDIR = os.path.join(BASEDIR, 'log', 'autoinstall.log')
 # create logger
 logger = logging.getLogger("autoinstall_log")
 logger.setLevel(logging.INFO)
+logger.basicConfig(filename=LOGDIR)
 # create console handler and set level to debug
 ch = logging.StreamHandler()
 #LEVELS: DEBUG - INFO - WARNING - ERROR - CRITICAL
 ch.setLevel(logging.DEBUG)
+
 # create formatter
 formatter = logging.Formatter("[%(asctime)s] [%(levelname)10s] Message: %(message)s")
 # add formatter to ch
