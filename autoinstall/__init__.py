@@ -11,7 +11,7 @@ import time
 from .messages import MESSAGES
 from .log import LOGGER
 from .application import Application
-from config import APPLICATIONS
+from config import APPLICATIONS, ADDITIONAL_COMMANDS
 
 __version__ = '0.1.0'
 
