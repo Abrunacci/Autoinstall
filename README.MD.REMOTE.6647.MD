@@ -1,5 +1,5 @@
 # Autoinstall
-> Python script to complete Debian instalations.
+> Short blurb about what your product does.
 
 ## Execution
 
@@ -51,7 +51,6 @@ git checkout develop
 ```
 
 ## Release History
->>>>>>> develop
 
 * 0.1.0
     * RELEASE:
