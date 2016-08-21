@@ -19,7 +19,12 @@ LOGDIR = os.path.join(BASEDIR, 'log', 'autoinstall.log')
 # create logger
 logger = logging.getLogger("autoinstall_log")
 logger.setLevel(logging.INFO)
-logger.basicConfig(filename=LOGDIR)
+# Add the log message handler to the logger
+handler = logging.handlers.RotatingFileHandler(
+              LOGDIR, maxBytes=20, backupCount=5)
+
+logger.addHandler(handler)
+
 # create console handler and set level to debug
 ch = logging.StreamHandler()
 #LEVELS: DEBUG - INFO - WARNING - ERROR - CRITICAL
