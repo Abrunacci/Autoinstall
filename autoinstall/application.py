@@ -4,7 +4,7 @@
 import os
 #Third-Party Imports
 #Custom Imports
-from log import LOGGER
+from .log import LOGGER
 
 class Application():
     def __init__(self, **kwargs):
