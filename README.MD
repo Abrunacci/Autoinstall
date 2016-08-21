@@ -1,60 +1,72 @@
-# AUTOINSTALL Customization
+# Autoinstall
+> Short blurb about what your product does.
 
-## What is this ?
+## Execution
 
-This script was created to facilitate the post-installation "Debian Jessie".
+Linux:
 
-## What this does?
+```sh
+sudo ./run.py
+```
 
-When "./Autoinstall.sh" is executed, the scritp begins to perform actions as follows:
+## Usage example
 
-* Update and upgrade the system.
-* Add sudoers to sudo group.
-* Install prerequisites (git, python-pip and configParser).
-* Run autoinstall.py.
+This script is designed based on a common problem when migrating between Debian distributions.
+It all starts with a question: What had installed in my previous distribution?
 
-Once "autoinstall.py" is running, the "APPLICATIONS.INI" file is read and starts with the installation of all applications that are there.
+To solve this problem that arose when migrating between LMDE, Debian, Crunchbangs (now Bunsenlabs) and other Debian-based distributions, I happened to create a script that loops through a list of applications and libraries and will automatically installing (something like a requirements.txt, but with apps)
 
-## How to add applications?
+That's how we got here.
 
-To add an application in the 'APPLICATIONS.INI' file should do as follows:
+In the file config.py we have 2 variables, one APPLICATIONS call and the other ADDITIONAL_COMMANDS:
 
-[application's name]<br>
-install: True
+APPLICATIONS has the following format:
 
-If the applications have prerequisites you only have to add in section the 'prerequisites' option
+```
+APPLICATIONS = [ 'application_name', 'application_name']
+```
 
-[application's name]<br>
-install: True<br>
-prerequisites: prerequisite1, prerequisite2, prerequisite3<br>
+ADDITIONAL_COMMANDS has the following format:
 
-
-If you want to install related packages (ex: postgresql -> postgresql-contrib):
-
-[application's name]<br>
-install: True<br>
-prerequisites: prerequisite1, prerequisite2, prerequisite3<br>
-related_packages: other_application, other_application2<br>
-
-If the application requires edit a config file just add the option path:
-
-[application's name]<br>
-install: True<br>
-prerequisites: prerequisite1, prerequisite2, prerequisite3<br>
-related_packages: other_application, other_application2<br>
-path: "path1", "path2"<br>
-
-If the application requires other commands after installation (ex: add user to group)
-
-[application's name]<br>
-install: True<br>
-prerequisites: prerequisite1, prerequisite2, prerequisite3<br>
-related_packages: other_application, other_application2<br>
-path: "path1", "path2"<br>
-other_commands: command1, command2, command3
-
-#### IMPORTANT: The 'install' option is **NOT OPTIONAL**
+```
+ADDITIONAL_COMMANDS = { 'application_name': [ 'TERMINAL_COMMAND']}
+```
 
 
+APPLICATIONS is required to run the script.
+
+ADDITIONAL_COMMANDS should only be completed if needed. For example, when installing 'virtualbox' we should add our user to vboxusers group then becomes:
+
+ADDITIONAL_COMMANDS = { 'virtualbox': [ 'adduser $ USERNAME vboxusers']}
 
 
+## Development setup
+
+There is no need to setup. All the imports MUST BE standard
+
+```sh
+git clone https://github.com/Abrunacci/Autoinstall
+cd Autoinstall
+git checkout develop
+```
+
+## Release History
+
+* 0.1.0
+    * RELEASE:
+            * autoinstall.py
+            * config.py
+            * log.py
+* 0.1.1
+    * Work in progress:
+            * Add console customization (oh my zsh)
+            * Add UPDATE and UPGRADE repositories.
+
+
+## Meta
+
+Alejandro Brunacci – [@Abrunacci](https://twitter.com/Abrunacci) – Abrunacci@Bitson.com.ar
+
+Distributed under the GPL3 license. See ``LICENSE`` for more information.
+
+[https://github.com/abrunacci](https://github.com/Abrunacci/)
