@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 #-*- coding: utf-8 -*-
 
 import os
@@ -106,7 +106,7 @@ def start_applications_installation(configFile):
                 if configFile.has_option(section,'related_packages'):
                     applications = configFile.get(section,'related_packages').split(',')
                     for application in applications:
-                        print install(application) 
+                        print install(application)
                 if configFile.has_option(section,'others_commands'):
                     commands = configFile.get(section,'others_commands').split(',')
                     for command in commands:
@@ -128,7 +128,7 @@ def install(application):
 def configurate(application, filepath):
     try:
         print ">> Configurating {0}".format(application)
-        cmd = "vim "+filepath  
+        cmd = "vim "+filepath
         os.system(cmd)
         return 'success'
     except Exception,e:
