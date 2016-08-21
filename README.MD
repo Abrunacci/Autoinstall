@@ -54,13 +54,13 @@ git checkout develop
 
 * 0.1.0
     * RELEASE:
-            * autoinstall.py
-            * config.py
-            * log.py
+      * autoinstall.py
+      * config.py
+      * log.py
 * 0.1.1
     * Work in progress:
-            * Add console customization (oh my zsh)
-            * Add UPDATE and UPGRADE repositories.
+      * Add console customization (oh my zsh)
+      * Add UPDATE and UPGRADE repositories.
 
 
 ## Meta
