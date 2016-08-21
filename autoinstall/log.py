@@ -20,9 +20,13 @@ LOGDIR = os.path.join(BASEDIR, 'log', 'autoinstall.log')
 # create logger
 logger = logging.getLogger("autoinstall_log")
 logger.setLevel(logging.INFO)
+# create formatter
+formatter = logging.Formatter("[%(asctime)s] [%(levelname)10s] Message: %(message)s")
+
+
 # Add the log message handler to the logger
 handler = logging.handlers.RotatingFileHandler(
-              LOGDIR, maxBytes=20, backupCount=5)
+              LOGDIR, maxBytes=20, backupCount=5, format=formatter)
 
 logger.addHandler(handler)
 
@@ -31,8 +35,6 @@ ch = logging.StreamHandler()
 #LEVELS: DEBUG - INFO - WARNING - ERROR - CRITICAL
 ch.setLevel(logging.DEBUG)
 
-# create formatter
-formatter = logging.Formatter("[%(asctime)s] [%(levelname)10s] Message: %(message)s")
 # add formatter to ch
 ch.setFormatter(formatter)
 # add ch to logger
