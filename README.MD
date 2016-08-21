@@ -51,7 +51,6 @@ git checkout develop
 ```
 
 ## Release History
->>>>>>> develop
 
 * 0.1.0
     * RELEASE:
