@@ -3,7 +3,7 @@ import os
 
 
 """ OLD STUFF
-BASEDIR = os.path.abspath(os.path.dirname(__file__))
+
 
 LOGDIR = os.path.join(BASEDIR, 'log', 'autoinstall.log')
 
@@ -14,6 +14,7 @@ logging.basicConfig(filename=LOGDIR,
 LOGGER = logging
 """
 
+BASEDIR = os.path.abspath(os.path.dirname(__file__))
 LOGDIR = os.path.join(BASEDIR, 'log', 'autoinstall.log')
 # create logger
 logger = logging.getLogger("autoinstall_log")
