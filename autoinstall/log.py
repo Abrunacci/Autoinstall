@@ -26,8 +26,8 @@ formatter = logging.Formatter("[%(asctime)s] [%(levelname)10s] Message: %(messag
 
 # Add the log message handler to the logger
 handler = logging.handlers.RotatingFileHandler(
-              LOGDIR, maxBytes=20, backupCount=5, format=formatter)
-
+              LOGDIR, maxBytes=20, backupCount=5)
+handler.setFormatter(formatter)
 logger.addHandler(handler)
 
 # create console handler and set level to debug
