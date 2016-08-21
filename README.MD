@@ -5,6 +5,7 @@ Config applications list:
 - vim config.py
 
 APPLICATIONS is a list of the applications/libraries names you wanna install... 
+
 ADDITIONAL_COMMANDS is a dictionary where you put the list of commands to complete an application installation (ex, add user to a group)
 
 EX:
