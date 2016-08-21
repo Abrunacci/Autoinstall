@@ -1,5 +1,5 @@
 # Autoinstall
-> Python script to complete Debian instalations.
+> Python script to complete Debian installations.
 
 ## Execution
 
