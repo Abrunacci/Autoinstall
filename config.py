@@ -15,7 +15,7 @@ APPLICATIONS = [
     'idle',
     'vlc',
     'transmission',
-    'virtualenvwrapper'
+    'virtualenvwrapper',
     'zsh',
     'keepassx',
     'ssh',
